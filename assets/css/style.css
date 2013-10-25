@@ -111,27 +111,12 @@ body {
 	min-height: 100%;
 	width: 100%;
 
-	-webkit-transition: all 3.4s ease;
-	-moz-transition: all 3.4s ease;
-	-o-transition: all 3.4s ease;
-	transition: all 3.4s ease;
+	-webkit-transition: all 0.8s ease;
+	-moz-transition: all 0.8s ease;
+	-o-transition: all 0.8s ease;
+	transition: all 0.8s ease;
 }
 
-
-
-
-
-
-
-																				
-/* ==========================================================================
-	PAGE CONTAINER
-	========================================================================== */
-																				
-
-#page-container {
-
-}
 
 
 
@@ -149,9 +134,9 @@ body {
 
 .menu-up {
 	position: relative;
-	-webkit-transform: translate(0, -90%); /* Safari and Chrome */
-	-ms-transform: translate(0, -90%); /* IE 9 */
-	transform: translate(0, -90%);
+	-webkit-transform: translate(0, -101%); /* Safari and Chrome */
+	-ms-transform: translate(0, -101%); /* IE 9 */
+	transform: translate(0, -101%);
 }
 
 .menu-down {

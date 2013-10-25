@@ -1,21 +1,20 @@
-
 ;(function() {
 
 	//HACK TO DONT RUN IN IE6 - dont needs
 	if (window.addEventListener) {
-		//INITIALIZING FASTCLICK
+		//initializing fastclick
 		//Polyfill to remove click delays on browsers with touch UIs.
 		window.addEventListener('load', function() {
 			 FastClick.attach(document.body);
 		}, false);
 
-		//OPTIMIZATION FOR TOUCH DEVICES
+		//optimization for touch devices
 		document.addEventListener("touchstart", function(){}, true);
 	}
 
 
 
-	//MENU TOGGLE
+	//VARIABLES
 	var y,
 		menu		= document.getElementById('menu'),
 		container	= document.getElementById('menu-container'),
@@ -25,15 +24,15 @@
 
 
 
-	//MENU
+	//MENU TOGGLE
 	menu.onclick = function() {
 		if (isOpen) {
 			isOpen = false;
 
-
-			page.style.display = 'block';
 			content.className = "menu-up";
 			window.scrollTo(0, y);
+			container.style.position = 'fixed';
+			page.style.display = 'block';
 
 			//When transition ends
 			$('#menu-content').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',
@@ -46,10 +45,10 @@
 			);
 		} else {
 			isOpen = true;
-			container.style.zIndex = "0";
+			container.style.zIndex = "1";
 			content.className += "menu-down";
 
-			//Capture the user's scrollY
+			//get user's scrollY
 			y = window.pageYOffset || document.documentElement.scrollTop;
 
 			$('#menu-content').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',
@@ -63,7 +62,6 @@
 				}
 			);
 		}
-
 	}
 
 
@@ -76,7 +74,6 @@
 		menu.style.marginTop		= '0px';
 
 		$('#menu').click(function () {
-			//verifica se o menu está aberto
 			if (isOpen) {
 				$('#menu-container').animate({marginTop: '0'},500, function() {
 					page.style.display = 'none';
