@@ -22,4 +22,4 @@ Compatibilities
  - Safari mobile
 
 
-Inspired by http://www.teehanlax.com.br
+Inspired by http://www.teehanlax.com
