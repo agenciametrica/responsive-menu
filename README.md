@@ -7,9 +7,9 @@ The menu content works like a mask that adjust to device height.
 See in action: http://agenciametrica.com.br/github/responsive-menu/
 
 
-How it works
+See in action
 ------------
-![My image](http://agenciametrica.com.br/github/responsive-menu/screencast.gif)
+http://agenciametrica.com.br/responsive-menu
 
 
 Compatibilities
