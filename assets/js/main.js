@@ -30,9 +30,9 @@
 			isOpen = false;
 
 			content.className = "menu-up";
+			page.style.display = 'block';
 			window.scrollTo(0, y);
 			container.style.position = 'fixed';
-			page.style.display = 'block';
 
 			//When transition ends
 			$('#menu-content').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',
