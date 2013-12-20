@@ -21,3 +21,7 @@ Compatibilities
 
 
 Inspired by http://www.teehanlax.com
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/agenciametrica/responsive-menu/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
