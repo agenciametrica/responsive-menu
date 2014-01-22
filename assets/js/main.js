@@ -1,72 +1,62 @@
-;(function() {
+//;(function() {
 
-	//HACK TO DONT RUN IN IE6 - dont needs
+
+	// Support Var
+	var scrollbarYPosition,
+		isOpen 		= false,
+		// DOM Caching
+		menu		= document.getElementById('menu'),
+		container	= document.getElementById('menu-container'),
+		content 	= document.getElementById('menu-content'),
+		page		= document.getElementById('page-container');
+
+
+
+	// Only attach EventListeners if supported
 	if (window.addEventListener) {
-		//initializing fastclick
-		//Polyfill to remove click delays on browsers with touch UIs.
+		// Initialize FastClick to avoid the 300ms touch delay on touchscreen devices
 		window.addEventListener('load', function() {
 			 FastClick.attach(document.body);
 		}, false);
 
-		//optimization for touch devices
-		document.addEventListener("touchstart", function(){}, true);
+		// Enable touch support if device supports
+		if (Modernizr.touch) {
+			document.addEventListener("touchstart", function(){}, true);
+		}
+
+		// Attach transition end listener
+		$('#menu-content').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',
+			function(e) {
+				if (isOpen == true) {
+					container.style.position 	= 'absolute';
+					page.style.display 			= 'none';
+					window.scrollTo(0, 0);
+				} else {
+					container.style.zIndex 		= "0";
+				}
+			}
+		);
 	}
 
-
-
-	//VARIABLES
-	var y,
-		menu		= document.getElementById('menu'),
-		container	= document.getElementById('menu-container'),
-		content 	= document.getElementById('menu-content'),
-		page		= document.getElementById('page-container'),
-		isOpen 		= false;
-
-
-
-	//MENU TOGGLE
+	// Bind toggle to menu button
 	menu.onclick = function() {
 		if (isOpen) {
-			isOpen = false;
-
-			content.className = "menu-up";
-			page.style.display = 'block';
-			window.scrollTo(0, y);
-			container.style.position = 'fixed';
-
-			//When transition ends
-			$('#menu-content').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',
-				function(e) {
-					//Verify if menu's was clicked 2 times without ends the transition
-					if (isOpen == false) {
-						container.style.zIndex = "0";
-					}
-				}
-			);
+			isOpen 					= false;
+			content.className 		= "menu-up";
+			page.style.display 		= 'block';
+			window.scrollTo(0, scrollbarYPosition);
+			container.style.position= 'fixed';
 		} else {
 			isOpen = true;
-			container.style.zIndex = "1";
-			content.className += "menu-down";
-
-			//get user's scrollY
-			y = window.pageYOffset || document.documentElement.scrollTop;
-
-			$('#menu-content').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',
-				function(e) {
-					//Verify if menu's was clicked 2 times without ends the transition
-					if (isOpen == true) {
-						page.style.display = 'none';
-						container.style.position = 'absolute';
-						window.scrollTo(0, 0);
-					}
-				}
-			);
+			container.style.zIndex 	= "1";
+			content.className 		+= "menu-down";
+			// Retrieve vertical scrollbar position
+			scrollbarYPosition 		= window.pageYOffset || document.documentElement.scrollTop;
 		}
+
 	}
 
-
-
-	//IF BROWSER DONT SUPPORTS CSS TRANSITIONS
+	// Test browser for CSS-Transitions support
 	if (!Modernizr.csstransitions) {
 		container.style.position	= 'absolute';
 		container.style.marginTop	= '-100%';
@@ -84,4 +74,4 @@
 		});
 	}
 
-})();
+//})();
