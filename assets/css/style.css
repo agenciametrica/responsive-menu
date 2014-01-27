@@ -4,6 +4,9 @@
 	RESETS
 	========================================================================== */
 																				
+html {
+	overflow-y: scroll;
+}
 
 body {
 	background: #ffffff;
